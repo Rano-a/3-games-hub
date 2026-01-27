@@ -24,13 +24,13 @@ body {
   width: 100%;
 }
 
-.nav-gauche {
+.nav-left {
   display: flex;
   align-items: center;
   gap: 30px;
 }
 
-.nav-gauche a {
+.nav-left a {
   text-decoration: none;
   color: white;
   font-family: 'Space Grotesk', sans-serif;
