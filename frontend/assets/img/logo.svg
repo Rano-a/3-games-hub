@@ -1,0 +1,16 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="130 105 140 175">
+  <defs>
+    <linearGradient id="a" x1="0%" y1="0%" x2="100%" y2="0%"><stop offset="0%" stop-color="#4F46E5"/><stop offset="100%" stop-color="#818CF8"/></linearGradient>
+    <linearGradient id="b" x1="0%" y1="0%" x2="0%" y2="100%"><stop offset="0%" stop-color="#0EA5E9"/><stop offset="100%" stop-color="#38BDF8"/></linearGradient>
+    <linearGradient id="c" x1="100%" y1="0%" x2="0%" y2="100%"><stop offset="0%" stop-color="#2DD4BF"/><stop offset="100%" stop-color="#14B8A6"/></linearGradient>
+    <filter id="d" x="-20%" y="-20%" width="140%" height="140%"><feGaussianBlur in="SourceAlpha" stdDeviation="5"/><feOffset dy="5"/><feComponentTransfer><feFuncA type="linear" slope=".2"/></feComponentTransfer><feMerge><feMergeNode/><feMergeNode in="SourceGraphic"/></feMerge></filter>
+  </defs>
+  
+  <g filter="url(#d)">
+    <g transform="translate(200 180)">
+      <path d="M0-70 60-35 0 0l-60-35Z" fill="url(#c)" stroke="#fff" stroke-width="2"/>
+      <path d="m5 5 60-35v70L5 75Z" fill="url(#a)" stroke="#fff" stroke-width="2"/>
+      <path d="M-5 5v70l-60-35V-30Z" fill="url(#b)" stroke="#fff" stroke-width="2"/>
+    </g>
+  </g>
+</svg>
