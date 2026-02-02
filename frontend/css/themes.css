@@ -16,8 +16,8 @@ body.theme-samurai #game-score-container {
 
 /* CORRECTION TAILLE IMAGE SAMURAI */
 body.theme-samurai .game-container-right img {
-  width: 1200px;
-  transform: translateY(10px);
+  width: 1100px;
+  transform: translateY(120px);
 }
 
 /* Thème NEON */
