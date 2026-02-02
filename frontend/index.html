@@ -17,8 +17,11 @@
     <header>
       <nav class="navbar">
         <div class="nav-left">
-          <img src="assets/img/logo.svg" alt="Logo MiageArcade" width="60" />
+          <img src="assets/img/logogame1.png" alt="Logo game" width="60" />
+          <h1 id="game-name">Le défi de l'Empereur</h1>
+        </div>
 
+        <div class="nav-center">
           <a href="#">Jeux</a>
           <a href="#">À propos</a>
           <a href="#">Contact</a>
@@ -40,8 +43,6 @@
     </header>
 
     <main>
-      <h1 id="game-name">Le défi de l'Empereur</h1>
-
       <button class="nav-btn nav-left-btn">&#10094;</button>
       <button class="nav-btn nav-right-btn">&#10095;</button>
 
@@ -62,11 +63,11 @@
           </div>
           
           <!-- N'afficher uniquement si un utilisateur est connecté -->
-          <p>Score du jeu : <span id="game-score">0</span></p>
+          <p id="game-score-container">Score du jeu : <span id="game-score">0</span></p>
         </div>
         <div class="game-container-right">
           <img
-            src="assets/img/defi-de-lempereur-game-img.png"
+            src="https://placehold.co/600x400"
             alt="Capture d'écran du jeu Le défi de l'Empereur"
             width="1000"
           />
@@ -75,5 +76,7 @@
     </main>
 
     <footer></footer>
+
+    <script src="./js/main.js"></script>
   </body>
 </html>
