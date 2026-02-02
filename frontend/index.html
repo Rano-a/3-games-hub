@@ -25,6 +25,9 @@
         </div>
 
         <div class="nav-right">
+          <!-- N'afficher uniquement si un utilisateur est connecté -->
+          <p>Score global : <span id="global-score">0</span></p>
+
           <a href="#">
             <img
               src="assets/img/default-user.svg"
@@ -39,11 +42,12 @@
     <main>
       <h1 id="game-name">Le défi de l'Empereur</h1>
 
+      <button class="nav-btn nav-left-btn">&#10094;</button>
+      <button class="nav-btn nav-right-btn">&#10095;</button>
+
       <section class="game-container">
-
-
         <div class="game-container-left">
-          <h2 id="game-title">BRAVEZ <br>LA GRANDE MURAILLE</h2>
+          <h2 id="game-title">BRAVEZ <br />LA GRANDE MURAILLE</h2>
           <p id="game-subtitle">
             Gauche, milieu, droite : choisissez votre voie sur la plus grande
             merveille du monde. Évitez les obstacles, testez vos réflexes et
@@ -53,9 +57,12 @@
 
           <div class="game-btn">
             <button id="btn-play"><a href="#">Jouer</a></button>
-            <button id="btn-gh"><a href="#">Github</a></button> <!-- Mettre la flèche qui va vers le haut dans le texte pour indiquer qu'une nouvelle fenêtre s'ouvre -->
+            <button id="btn-gh"><a href="#">Github</a></button>
+            <!-- Mettre la flèche qui va vers le haut dans le texte pour indiquer qu'une nouvelle fenêtre s'ouvre -->
           </div>
           
+          <!-- N'afficher uniquement si un utilisateur est connecté -->
+          <p>Score du jeu : <span id="game-score">0</span></p>
         </div>
         <div class="game-container-right">
           <img
