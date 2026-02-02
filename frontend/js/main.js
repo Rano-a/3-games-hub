@@ -2,90 +2,102 @@
 // C'est ici que tu modifies les textes, les images et les liens pour chaque jeu.
 const games = [
   {
-    // JEU 1 (Celui par défaut)
+    // JEU 1
     name: "Le défi de l'Empereur",
     title: "BRAVEZ <br />LA GRANDE MURAILLE",
     subtitle: "Gauche, milieu, droite : choisissez votre voie sur la plus grande merveille du monde. Évitez les obstacles, testez vos réflexes et établissez un score digne de l'Empereur.",
-    img: "https://placehold.co/600x400", // Vérifie que ce chemin est bon
-    linkPlay: "#",   // Lien vers la page de jeu 1
-    linkGh: "#",     // Lien vers le Github du jeu 1
-    score: 0         // Score par défaut ou à récupérer plus tard
+    img: "assets/img/samurai.png",
+    linkPlay: "#",
+    linkGh: "#",
+    score: 0,
+    // Nouveaux champs de style
+    theme: "theme-samurai",
+    bg: "assets/img/61126.jpg", 
+    logo: "assets/img/logogame1.png"
   },
   {
     // JEU 2
     name: "Chain reaction : Neon pop",
     title: "UN CLIC <br />UNE RÉACTION </br />UN CHAOS TOTAL",
-    subtitle: "Déclenchez l'étincelle parfaite dans un monde de néons. Une seule chance pour créer la réaction en chaîne la plus massive et pulvériser vos scores. Serez-vous assez précis pour vider l'écran ?",
-    img: "https://placehold.co/600x400", // Remplace par ton image
+    subtitle: "Déclenchez l'étincelle parfaite dans un monde de néons. Une seule chance pour créer la réaction en chaîne la plus massive et pulvériser vos scores.",
+    img: "assets/img/neon-personnage.png",
     linkPlay: "#",
     linkGh: "#",
-    score: 0
+    score: 0,
+    // Nouveaux champs de style
+    theme: "theme-neon",
+    bg: "assets/img/neon-bg.webp", // Créer cette image ou mettre un placeholder
+    logo: "assets/img/logogame2.png" // Créer cette image
   },
   {
     // JEU 3
     name: "Sticky climber",
     title: "DEFIEZ <br />LA GRAVITE",
-    subtitle: "Accrochez-vous, visez haut et ne lâchez rien. Maîtrisez l'art de la rotation pour grimper toujours plus loin dans ce défi vertical infini. Un seul faux mouvement, et c'est la chute !",
-    img: "https://placehold.co/600x400", // Remplace par ton image
+    subtitle: "Accrochez-vous, visez haut et ne lâchez rien. Maîtrisez l'art de la rotation pour grimper toujours plus loin dans ce défi vertical infini.",
+    img: "assets/img/climber.png",
     linkPlay: "#",
     linkGh: "#",
-    score: 0
+    score: 0,
+    // Nouveaux champs de style
+    theme: "theme-sticky",
+    bg: "assets/img/moutain-bg.jpg", // Créer cette image
+    logo: "assets/img/logogame3.png" // Créer cette image
   }
 ];
 
 // 2. Sélection des éléments HTML à modifier
 const domElements = {
+  body: document.body,
+  navLogo: document.querySelector('.nav-left img'), // Ajout du logo navbar
   gameName: document.getElementById('game-name'),
   gameTitle: document.getElementById('game-title'),
   gameSubtitle: document.getElementById('game-subtitle'),
   gameImg: document.querySelector('.game-container-right img'),
-  btnPlay: document.querySelector('#btn-play a'), // On cible le lien <a> dans le bouton
-  btnGh: document.querySelector('#btn-gh a'),     // On cible le lien <a> dans le bouton
+  btnPlay: document.querySelector('#btn-play a'),
+  btnGh: document.querySelector('#btn-gh a'),
   scoreSpan: document.getElementById('game-score')
 };
 
-// 3. Variables de gestion
-let currentIndex = 0; // On commence par le premier jeu (index 0)
+let currentIndex = 0;
 
-// 4. Fonction pour mettre à jour l'affichage
 function updateDisplay() {
   const currentGame = games[currentIndex];
 
-  // Mise à jour des textes
+  // 1. Mise à jour du style global (Body)
+  // On change l'image de fond
+  domElements.body.style.backgroundImage = `url('${currentGame.bg}')`;
+  
+  // On retire toutes les classes de thème possibles et on ajoute la bonne
+  domElements.body.classList.remove('theme-samurai', 'theme-neon', 'theme-sticky');
+  domElements.body.classList.add(currentGame.theme);
+
+  // 2. Mise à jour Navbar
+  domElements.navLogo.src = currentGame.logo;
   domElements.gameName.textContent = currentGame.name;
-  domElements.gameTitle.innerHTML = currentGame.title; // innerHTML pour gérer le <br />
+
+  // 3. Mise à jour Contenu
+  domElements.gameTitle.innerHTML = currentGame.title;
   domElements.gameSubtitle.textContent = currentGame.subtitle;
   
-  // Mise à jour de l'image (source et texte alternatif)
   domElements.gameImg.src = currentGame.img;
   domElements.gameImg.alt = "Capture d'écran du jeu " + currentGame.name;
 
-  // Mise à jour des liens
   domElements.btnPlay.href = currentGame.linkPlay;
   domElements.btnGh.href = currentGame.linkGh;
-
-  // Mise à jour du score (optionnel pour l'instant)
   domElements.scoreSpan.textContent = currentGame.score;
 }
 
-// 5. Gestion des clics sur les boutons (Événements)
+// Initialisation au chargement pour appliquer le thème du premier jeu
+updateDisplay();
 
-// Bouton GAUCHE (Va vers le jeu suivant comme demandé)
 document.querySelector('.nav-left-btn').addEventListener('click', () => {
   currentIndex++; 
-  // Si on dépasse le dernier jeu, on revient au premier (boucle)
-  if (currentIndex >= games.length) {
-    currentIndex = 0;
-  }
+  if (currentIndex >= games.length) currentIndex = 0;
   updateDisplay();
 });
 
-// Bouton DROIT (Va vers le jeu précédent)
 document.querySelector('.nav-right-btn').addEventListener('click', () => {
   currentIndex--;
-  // Si on est avant le premier jeu, on va au dernier
-  if (currentIndex < 0) {
-    currentIndex = games.length - 1;
-  }
+  if (currentIndex < 0) currentIndex = games.length - 1;
   updateDisplay();
-});
+}); 

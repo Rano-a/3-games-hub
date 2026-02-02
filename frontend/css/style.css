@@ -8,6 +8,72 @@
   src: url(../assets/font/chinese\ rocks\ rg.otf);
 }
 
+@font-face {
+  font-family: Neon;
+  src: url(../assets/font/Neon\ Bright.ttf)
+}
+
+@font-face {
+  font-family: Earthquake;
+  src: url(../assets/font/EARTHQUAKE.TTF);
+}
+
+/* --- GESTION DES THÈMES --- */
+
+/* 1. Thème SAMURAI (Défaut) */
+body.theme-samurai #game-title {
+  font-family: 'ChineseRock', sans-serif;
+}
+body.theme-samurai #game-name,
+body.theme-samurai .nav-center a, 
+body.theme-samurai .nav-right,
+body.theme-samurai #btn-play,
+body.theme-samurai #btn-gh {
+  font-family: 'AmanoJaku', sans-serif;
+}
+
+/* 2. Thème NEON (Jeu 2) */
+body.theme-neon #game-title {
+  font-family: 'Neon', sans-serif;
+  text-shadow: 0 0 10px #0ff, 0 0 20px #0ff;
+  color: #e0ffff;
+  font-size: 8rem; /* Réduit drastiquement pour ce thème (au lieu de 15rem) */
+  line-height: 1.1; /* Ressère l'espace entre les lignes */
+}
+body.theme-neon #game-name,
+body.theme-neon .nav-center a,
+body.theme-neon .nav-right,
+body.theme-neon #btn-play,
+body.theme-neon #btn-gh {
+  font-family: 'Neon', sans-serif;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+}
+body.theme-neon #btn-play {
+  background-color: #0ff;
+  color: black;
+  box-shadow: 0 0 15px #0ff;
+}
+
+/* 3. Thème STICKY (Jeu 3) */
+body.theme-sticky #game-title {
+  font-family: 'Earthquake', sans-serif; /* Remplace par ta font "fun" */
+  color: #FFD700;
+  text-shadow: 3px 3px 0px #000;
+}
+body.theme-sticky #game-name,
+body.theme-sticky .nav-center a,
+body.theme-sticky .nav-right,
+body.theme-sticky #btn-play,
+body.theme-sticky #btn-gh {
+  font-family: 'Earthquake', sans-serif;
+  font-weight: 900;
+}
+body.theme-sticky #btn-play {
+  background-color: #FFD700;
+  border-radius: 50px;
+}
+
 * {
   box-sizing: border-box;
   margin: 0;
@@ -78,13 +144,25 @@ body {
   font-family: 'AmanoJaku', sans-serif;
 }
 
+.nav-right p {
+  margin-right: 15px;
+  font-family: 'AmanoJaku', sans-serif;
+  font-weight: bold;
+}
+
 .game-container {
   display: flex;
   justify-content: center;
   align-items: center;
   gap: 100px;
   margin-top: 50px;
-  padding: 20px 80px;
+  padding: 20px 80px 20px 150px; /* Augmenté à 150px à gauche pour éviter la flèche */
+  height: 80vh;
+  position: relative;
+}
+
+.game-container-right img {
+  width: 1200px;
 }
 
 #game-title {

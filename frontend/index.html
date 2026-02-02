@@ -3,7 +3,7 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>MiageArcade</title>
+    <title>MiageArcade - 3 games hub</title>
     <link rel="stylesheet" href="./css/style.css" />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
@@ -17,7 +17,7 @@
     <header>
       <nav class="navbar">
         <div class="nav-left">
-          <img src="assets/img/logogame1.png" alt="Logo game" width="60" />
+          <img src="assets/img/logogame1.png" alt="Logo game" width="80" />
           <h1 id="game-name">Le défi de l'Empereur</h1>
         </div>
 
@@ -28,9 +28,7 @@
         </div>
 
         <div class="nav-right">
-          <!-- N'afficher uniquement si un utilisateur est connecté -->
-          <p>Score global : <span id="global-score">0</span></p>
-
+          <p class="user-name">Default User</p>
           <a href="#">
             <img
               src="assets/img/default-user.svg"
@@ -61,15 +59,16 @@
             <button id="btn-gh"><a href="#">Github</a></button>
             <!-- Mettre la flèche qui va vers le haut dans le texte pour indiquer qu'une nouvelle fenêtre s'ouvre -->
           </div>
-          
+
           <!-- N'afficher uniquement si un utilisateur est connecté -->
-          <p id="game-score-container">Score du jeu : <span id="game-score">0</span></p>
+          <p id="game-score-container">
+            Score du jeu : <span id="game-score">0</span>
+          </p>
         </div>
         <div class="game-container-right">
           <img
-            src="https://placehold.co/600x400"
+            src="assets/img/samurai.png"
             alt="Capture d'écran du jeu Le défi de l'Empereur"
-            width="1000"
           />
         </div>
       </section>
