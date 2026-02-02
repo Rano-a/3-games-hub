@@ -1,0 +1,86 @@
+/* GESTION DES THÈMES */
+
+/* Thème SAMURAI */
+body.theme-samurai #game-title {
+  font-family: "ChineseRock", sans-serif;
+}
+body.theme-samurai #game-name,
+body.theme-samurai .nav-center a,
+body.theme-samurai .nav-right,
+body.theme-samurai #btn-play,
+body.theme-samurai #btn-gh,
+body.theme-samurai #game-score-container {
+  font-family: "AmanoJaku", sans-serif;
+  font-size: 3rem;
+}
+
+/* CORRECTION TAILLE IMAGE SAMURAI */
+body.theme-samurai .game-container-right img {
+  width: 1200px;
+  transform: translateY(10px);
+}
+
+/* Thème NEON */
+body.theme-neon #game-title {
+  font-family: "Neon", sans-serif;
+  text-shadow:
+    0 0 10px #0ff,
+    0 0 20px #0ff;
+  color: #e0ffff;
+  font-size: 10rem;
+  line-height: 1.1;
+}
+body.theme-neon #game-name,
+body.theme-neon .nav-center a,
+body.theme-neon .nav-right,
+body.theme-neon #btn-play,
+body.theme-neon #btn-gh,
+body.theme-neon #game-score-container {
+  font-family: "Neon", sans-serif;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  font-size: 3rem;
+}
+body.theme-neon #btn-play {
+  background-color: #0ff;
+  color: black;
+  box-shadow: 0 0 15px #0ff;
+}
+
+/* CORRECTION ALIGNEMENT IMAGE NEON */
+body.theme-neon .game-container-right {
+  align-self: flex-end;
+  transform: translateY(180px);
+  line-height: 0;
+}
+
+/* Thème STICKY */
+body.theme-sticky #game-title {
+  font-family: "Earthquake", sans-serif;
+  color: #ffd700;
+  text-shadow: 3px 3px 0px #000;
+  font-size: 18rem;
+  line-height: 1.1;
+}
+body.theme-sticky #game-name,
+body.theme-sticky .nav-center a,
+body.theme-sticky .nav-right,
+body.theme-sticky #btn-play,
+body.theme-sticky #btn-gh,
+body.theme-sticky #game-score-container {
+  font-family: "Earthquake", sans-serif;
+  font-size: 5rem;
+  font-weight: 900;
+}
+body.theme-sticky #btn-play {
+  background-color: #ffd700;
+}
+
+body.theme-sticky #game-title,
+body.theme-sticky #game-name,
+body.theme-sticky .nav-center a,
+body.theme-sticky .nav-right,
+body.theme-sticky #btn-gh,
+body.theme-sticky #game-score-container {
+  -webkit-text-stroke: 1px black;
+}
