@@ -35,5 +35,83 @@ body {
   color: white;
   font-family: 'Space Grotesk', sans-serif;
   font-weight: bold;
-  font-size: 1.1rem;
+  font-size: 2rem;
+}
+
+#game-name {
+  font-size: 8rem;
+  font-weight: bold;
+  text-align: center;
+  margin-top: 100px;
+  color: white;
+  font-family: 'Space Grotesk', sans-serif;
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.7);
+}
+
+.game-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 100px;
+  margin-top: 50px;
+  padding: 20px 80px;
+}
+
+#game-title {
+  font-size: 7rem;
+  font-weight: bold;
+  margin-bottom: 20px;
+  color: white;
+  font-family: 'Space Grotesk', sans-serif;
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.7);
+}
+
+#game-subtitle {
+  font-size: 1.9rem;
+  color: white;
+  margin-bottom: 30px;
+  max-width: 1500px;
+  text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.7);
+  font-family: 'Space Grotesk', sans-serif;
+}
+
+#btn-play {
+  background-color: #ffffff;
+  color: black;
+  border: none;
+  padding: 20px 100px;
+  margin-right: 20px;
+  font-size: 2rem;
+  font-weight: bold;
+  font-family: 'Space Grotesk', sans-serif;
+  border-radius: 20px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+#btn-play:hover {
+  background-color: #e0e0e0;
+}
+
+#btn-gh {
+  background-color: transparent;
+  color: white;
+  border: 2px solid #ffffff;
+  padding: 20px 100px;
+  margin-right: 20px;
+  font-size: 2rem;
+  font-weight: bold;
+  font-family: 'Space Grotesk', sans-serif;
+  border-radius: 20px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+#btn-gh:hover {
+  background-color: rgba(255, 255, 255, 0.2);
+}
+
+#btn-play a, #btn-gh a {
+  text-decoration: none;
+  color: inherit;
 }
