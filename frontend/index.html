@@ -3,7 +3,7 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>MiageArcade - 3 games hub</title>
+    <title>Ranoa - 3 games hub</title>
     <link rel="stylesheet" href="./css/fonts.css" />
     <link rel="stylesheet" href="./css/themes.css" />
     <link rel="stylesheet" href="./css/style.css" />
@@ -13,13 +13,18 @@
       href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300..700&display=swap"
       rel="stylesheet"
     />
+    <link rel="stylesheet" href="./css/auth.css" />
   </head>
 
   <body>
     <header>
       <nav class="navbar">
         <div class="nav-left">
-          <img src="assets/img/defi-de-lempereur-logo" alt="Logo game" width="80" />
+          <img
+            src="assets/img/defi-de-lempereur-logo"
+            alt="Logo game"
+            width="80"
+          />
           <h1 id="game-name">Le défi de l'Empereur</h1>
         </div>
 
@@ -30,14 +35,22 @@
         </div>
 
         <div class="nav-right">
-          <p class="user-name">Default User</p>
-          <a href="#">
-            <img
-              src="assets/img/default-user.svg"
-              alt="Mon Compte"
-              width="60"
-            />
-          </a>
+          <p class="user-name" id="user-display-name">Default User</p>
+          <div class="user-block">
+            <a href="#" id="auth-btn">
+              <img
+                src="assets/img/default-user.svg"
+                alt="Mon Compte"
+                width="60"
+              />
+            </a>
+            <div class="profile-dropdown" id="profile-dropdown">
+              <ul>
+                <li id="menu-profile">Profil</li>
+                <li id="menu-logout">Déconnexion</li>
+              </ul>
+            </div>
+          </div>
         </div>
       </nav>
     </header>
@@ -58,7 +71,11 @@
 
           <div class="game-btn">
             <button id="btn-play"><a href="#">Jouer</a></button>
-            <button id="btn-gh"><a href="https://github.com/Rano-a/3-games-hub" target="_blank">Github</a></button>
+            <button id="btn-gh">
+              <a href="https://github.com/Rano-a/3-games-hub" target="_blank"
+                >Github</a
+              >
+            </button>
           </div>
 
           <p id="game-score-container">
@@ -74,8 +91,89 @@
       </section>
     </main>
 
+    <!-- Auth Modal -->
+    <div class="auth-modal-overlay" id="auth-overlay">
+      <div class="auth-modal">
+        <button class="auth-close-btn" id="auth-close">&times;</button>
+
+        <!-- Login Form -->
+        <div id="login-form">
+          <h2 class="auth-title">CONNEXION</h2>
+          <form id="form-login">
+            <div class="auth-form-group">
+              <input
+                type="text"
+                id="login-username"
+                class="auth-input"
+                placeholder="Pseudo"
+                required
+              />
+            </div>
+            <div class="auth-form-group">
+              <input
+                type="password"
+                id="login-password"
+                class="auth-input"
+                placeholder="Mot de passe"
+                required
+              />
+            </div>
+            <div class="auth-error" id="login-error"></div>
+            <button type="submit" class="auth-submit-btn">SE CONNECTER</button>
+          </form>
+          <p class="auth-switch-text">
+            Pas encore de compte ?
+            <span class="auth-switch-link" id="show-register"
+              >Créer un compte</span
+            >
+          </p>
+        </div>
+
+        <!-- Register Form -->
+        <div id="register-form" style="display: none">
+          <h2 class="auth-title">INSCRIPTION</h2>
+          <form id="form-register">
+            <div class="auth-form-group">
+              <input
+                type="text"
+                id="register-username"
+                class="auth-input"
+                placeholder="Choisissez un pseudo"
+                required
+              />
+            </div>
+            <div class="auth-form-group">
+              <input
+                type="password"
+                id="register-password"
+                class="auth-input"
+                placeholder="Mot de passe"
+                required
+              />
+            </div>
+            <div class="auth-form-group">
+              <input
+                type="password"
+                id="register-confirm-password"
+                class="auth-input"
+                placeholder="Confirmer mot de passe"
+                required
+              />
+            </div>
+            <div class="auth-error" id="register-error"></div>
+            <button type="submit" class="auth-submit-btn">S'INSCRIRE</button>
+          </form>
+          <p class="auth-switch-text">
+            Déjà un compte ?
+            <span class="auth-switch-link" id="show-login">Se connecter</span>
+          </p>
+        </div>
+      </div>
+    </div>
+
     <footer></footer>
     <script src="./js/data.js"></script>
     <script src="./js/main.js"></script>
+    <script src="./js/auth.js"></script>
   </body>
 </html>

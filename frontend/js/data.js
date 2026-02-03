@@ -1,6 +1,6 @@
 const games = [
   {
-    /* Thème SAMURAI */
+    /* SAMURAI THEME */
     name: "Le défi de l'Empereur",
     title: "BRAVEZ <br />LA GRANDE MURAILLE",
     subtitle:
@@ -14,7 +14,7 @@ const games = [
     logo: "assets/img/defi-de-lempereur-logo.png",
   },
   {
-    /* Thème NEON */
+    /* NEON THEME */
     name: "Neon pop",
     title: "UN CLIC <br />UNE RÉACTION </br />UN CHAOS TOTAL",
     subtitle:
@@ -28,7 +28,7 @@ const games = [
     logo: "assets/img/neon-pop-logo.png",
   },
   {
-    /* Thème STICKY */
+    /* STICKY THEME */
     name: "Sticky climber",
     title: "DEFIEZ <br />LA GRAVITE",
     subtitle:
