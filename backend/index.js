@@ -1,9 +1,18 @@
+const dotenv = require("dotenv");
 const express = require("express");
+const path = require("path");
+const connectDB = require("./config/db");
+
 const app = express();
-const port = 5000;
+const port = process.env.PORT || 5000;
+
+dotenv.config();
+connectDB();
+
+app.use(express.json());
 
 app.get("/", (req, res) => {
-  res.send("Hello World!");
+  res.sendFile(path.join(__dirname, "..", "frontend", "index.html"));
 });
 
 app.get("/about", (req, res) => {
