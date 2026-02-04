@@ -4,11 +4,12 @@ const path = require("path");
 const connectDB = require("./config/db");
 
 const app = express();
-const port = process.env.PORT || 5000;
+const port = process.env.PORT || 5000; // retirer plus tard le || 5000
 
 dotenv.config();
 connectDB();
 
+app.use(express.static(path.join(__dirname, "..", "frontend")));
 app.use(express.json());
 
 app.get("/", (req, res) => {
