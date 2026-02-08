@@ -16,7 +16,6 @@ document.addEventListener("DOMContentLoaded", () => {
   const userDisplayName = document.getElementById("user-display-name");
 
   // State
-  const USERS_KEY = "game_hub_users";
   const SESSION_KEY = "game_hub_session";
 
   // Validations
@@ -106,40 +105,60 @@ document.addEventListener("DOMContentLoaded", () => {
     document.getElementById("form-register").reset();
   }
 
-  // Auth Logic
 
-  function getUsers() {
-    const users = localStorage.getItem(USERS_KEY);
-    return users ? JSON.parse(users) : {};
-  }
+  // Auth Logic (API)
 
-  function saveUser(username, password) {
-    const users = getUsers();
-    if (users[username]) {
-      return false;
+  async function registerUser(username, password) {
+    try {
+      const res = await fetch("/api/auth/signup", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({ username, password }),
+      });
+
+      const data = await res.json();
+      if (!res.ok) {
+        throw new Error(data.msg || "Erreur lors de l'inscription");
+      }
+      return data.user;
+    } catch (error) {
+      throw error;
     }
-    users[username] = { password: password };
-    localStorage.setItem(USERS_KEY, JSON.stringify(users));
-    return true;
   }
 
-  function checkCredentials(username, password) {
-    const users = getUsers();
-    return users[username] && users[username].password === password;
+  async function loginUser(username, password) {
+    try {
+      const res = await fetch("/api/auth/login", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({ username, password }),
+      });
+
+      const data = await res.json();
+      if (!res.ok) {
+        throw new Error(data.msg || "Erreur lors de la connexion");
+      }
+      return data.user;
+    } catch (error) {
+      throw error;
+    }
   }
 
   function setSession(username) {
-    localStorage.setItem(SESSION_KEY, username);
+    sessionStorage.setItem(SESSION_KEY, username);
     updateUI(username);
   }
 
   function getSession() {
-    return localStorage.getItem(SESSION_KEY);
+    return sessionStorage.getItem(SESSION_KEY);
   }
 
   function logout() {
-    localStorage.removeItem(SESSION_KEY);
-    updateUI(null);
+    sessionStorage.removeItem(SESSION_KEY);
     updateUI(null);
   }
 
@@ -154,23 +173,23 @@ document.addEventListener("DOMContentLoaded", () => {
   // Form Submissions
 
   // LOGIN
-  formLogin.addEventListener("submit", (e) => {
+  formLogin.addEventListener("submit", async (e) => {
     e.preventDefault();
     const username = document.getElementById("login-username").value.trim();
     const password = document.getElementById("login-password").value.trim();
     const errorDiv = document.getElementById("login-error");
 
-    if (!checkCredentials(username, password)) {
-      errorDiv.textContent = "Pseudo ou mot de passe incorrect.";
-      return;
+    try {
+      await loginUser(username, password);
+      setSession(username);
+      closeModal();
+    } catch (error) {
+      errorDiv.textContent = error.message;
     }
-
-    setSession(username);
-    closeModal();
   });
 
   // REGISTER
-  formRegister.addEventListener("submit", (e) => {
+  formRegister.addEventListener("submit", async (e) => {
     e.preventDefault();
     const username = document.getElementById("register-username").value.trim();
     const password = document.getElementById("register-password").value.trim();
@@ -196,15 +215,14 @@ document.addEventListener("DOMContentLoaded", () => {
       return;
     }
 
-    if (!saveUser(username, password)) {
-      errorDiv.textContent = "Ce pseudo est déjà pris.";
-      return;
+    try {
+      await registerUser(username, password);
+      setSession(username);
+      closeModal();
+      alert("Compte créé avec succès ! Bienvenue.");
+    } catch (error) {
+      errorDiv.textContent = error.message;
     }
-
-    // Auto login after register
-    setSession(username);
-    closeModal();
-    alert("Compte créé avec succès ! Bienvenue.");
   });
 
   // Init
