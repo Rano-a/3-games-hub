@@ -105,7 +105,6 @@ document.addEventListener("DOMContentLoaded", () => {
     document.getElementById("form-register").reset();
   }
 
-
   // Auth Logic (API)
 
   async function registerUser(username, password) {
@@ -219,7 +218,6 @@ document.addEventListener("DOMContentLoaded", () => {
       await registerUser(username, password);
       setSession(username);
       closeModal();
-      alert("Compte créé avec succès ! Bienvenue.");
     } catch (error) {
       errorDiv.textContent = error.message;
     }
