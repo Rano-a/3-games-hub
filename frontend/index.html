@@ -21,7 +21,7 @@
       <nav class="navbar">
         <div class="nav-left">
           <img
-            src="assets/img/defi-de-lempereur-logo"
+            src="assets/img/defi-de-lempereur-logo.png"
             alt="Logo game"
             width="80"
           />
@@ -167,6 +167,58 @@
             Déjà un compte ?
             <span class="auth-switch-link" id="show-login">Se connecter</span>
           </p>
+        </div>
+      </div>
+    </div>
+
+    <!-- Profile Modal -->
+    <div class="profile-modal-overlay" id="profile-overlay">
+      <div class="profile-modal">
+        <button class="profile-close-btn" id="profile-close">&times;</button>
+
+        <div class="profile-header">
+          <div class="profile-user-info">
+            <img
+              src="assets/img/default-user.svg"
+              alt="Avatar"
+              class="profile-avatar"
+            />
+            <h2 class="profile-username" id="profile-username">Default User</h2>
+          </div>
+        </div>
+
+        <div class="profile-scores">
+          <div class="score-card">
+            <div class="score-card-icon">🏯</div>
+            <div class="score-card-content">
+              <span class="score-value" id="score-empereur">0</span>
+              <span class="score-label">Le défi de l'Empereur</span>
+            </div>
+          </div>
+
+          <div class="score-card">
+            <div class="score-card-icon">💥</div>
+            <div class="score-card-content">
+              <span class="score-value" id="score-neon">0</span>
+              <span class="score-label">Neon Pop</span>
+            </div>
+          </div>
+
+          <div class="score-card">
+            <div class="score-card-icon">🧗</div>
+            <div class="score-card-content">
+              <span class="score-value" id="score-sticky">0</span>
+              <span class="score-label">Sticky Climber</span>
+            </div>
+          </div>
+
+          <div class="score-card">
+            <div class="score-card-icon">🏆</div>
+            <div class="score-card-content">
+              <span class="score-value" id="score-global">0</span>
+              <span class="score-label">Score Global</span>
+            </div>
+          </div>
         </div>
       </div>
     </div>

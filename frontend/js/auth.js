@@ -75,6 +75,52 @@ document.addEventListener("DOMContentLoaded", () => {
     profileDropdown.classList.remove("active");
   });
 
+  // Profile Modal Logic
+  const profileOverlay = document.getElementById("profile-overlay");
+  const profileCloseBtn = document.getElementById("profile-close");
+  const profileUsernameEl = document.getElementById("profile-username");
+
+  function openProfileModal() {
+    const currentUser = getSession();
+    if (currentUser) {
+      profileUsernameEl.textContent = currentUser;
+    } else {
+      profileUsernameEl.textContent = "Default User";
+    }
+
+    // Populate scores from games array
+    document.getElementById("score-empereur").textContent = games[0].score || 0;
+    document.getElementById("score-neon").textContent = games[1].score || 0;
+    document.getElementById("score-sticky").textContent = games[2].score || 0;
+
+    // Calculate global score
+    const globalScore = games.reduce((sum, game) => sum + (game.score || 0), 0);
+    document.getElementById("score-global").textContent = globalScore;
+
+    profileOverlay.classList.add("active");
+    profileDropdown.classList.remove("active");
+  }
+
+  function closeProfileModal() {
+    profileOverlay.classList.remove("active");
+  }
+
+  menuProfile.addEventListener("click", openProfileModal);
+
+  profileCloseBtn.addEventListener("click", closeProfileModal);
+
+  document.addEventListener("keydown", (e) => {
+    if (e.key === "Escape" && profileOverlay.classList.contains("active")) {
+      closeProfileModal();
+    }
+  });
+
+  profileOverlay.addEventListener("click", (e) => {
+    if (e.target === profileOverlay) {
+      closeProfileModal();
+    }
+  });
+
   authBtn.addEventListener("click", handleAuthClick);
 
   authCloseBtn.addEventListener("click", closeModal);
