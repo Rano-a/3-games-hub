@@ -68,3 +68,12 @@ document.querySelector(".nav-right-btn").addEventListener("click", () => {
   if (currentIndex < 0) currentIndex = games.length - 1;
   updateDisplay();
 });
+
+// Bloquer l'accès au jeu si l'utilisateur n'est pas connecté
+document.getElementById("btn-play").addEventListener("click", (e) => {
+  const session = localStorage.getItem("game_hub_session");
+  if (!session) {
+    e.preventDefault();
+    document.getElementById("auth-overlay").classList.add("active");
+  }
+});

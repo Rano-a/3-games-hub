@@ -246,3 +246,14 @@ body {
   color: black;
   transform: translateY(-50%) scale(1.1);
 }
+/* FOOTER */
+footer {
+  position: absolute;
+  bottom: 10px;
+  width: 100%;
+  text-align: center;
+  color: rgba(255, 255, 255, 0.5);
+  font-family: "Space Grotesk", sans-serif;
+  font-size: 0.8rem;
+  z-index: 10;
+}

@@ -193,16 +193,16 @@ document.addEventListener("DOMContentLoaded", () => {
   }
 
   function setSession(username) {
-    sessionStorage.setItem(SESSION_KEY, username);
+    localStorage.setItem(SESSION_KEY, username);
     updateUI(username);
   }
 
   function getSession() {
-    return sessionStorage.getItem(SESSION_KEY);
+    return localStorage.getItem(SESSION_KEY);
   }
 
   function logout() {
-    sessionStorage.removeItem(SESSION_KEY);
+    localStorage.removeItem(SESSION_KEY);
     updateUI(null);
   }
 
