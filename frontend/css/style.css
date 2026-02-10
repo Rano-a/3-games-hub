@@ -21,18 +21,18 @@ body {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 20px 80px;
+  padding: 10px 40px;
   width: 100%;
 }
 
 .nav-left {
   display: flex;
   align-items: center;
-  gap: 30px;
+  gap: 15px;
 }
 
 #game-name {
-  font-size: 2.5rem;
+  font-size: 1.25rem;
   color: white;
   font-family: "AmanoJaku", sans-serif;
   font-weight: bold;
@@ -42,7 +42,7 @@ body {
 .nav-center {
   display: flex;
   align-items: center;
-  gap: 70px;
+  gap: 35px;
 }
 
 .nav-center a {
@@ -50,17 +50,17 @@ body {
   color: white;
   font-family: "AmanoJaku", sans-serif;
   font-weight: bold;
-  font-size: 2.5rem;
+  font-size: 1.25rem;
 }
 
 .nav-right {
   display: flex;
   align-items: center;
   justify-content: center;
-  gap: 20px;
-  font-size: 2.5rem;
+  gap: 10px;
+  font-size: 1.25rem;
   color: white;
-  max-width: 600px;
+  max-width: 300px;
   text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.7);
   font-family: "AmanoJaku", sans-serif;
   z-index: 1000;
@@ -78,10 +78,10 @@ body {
   right: 0;
   background: rgba(0, 0, 0, 0.9);
   border: 1px solid rgba(255, 255, 255, 0.2);
-  border-radius: 10px;
+  border-radius: 5px;
   backdrop-filter: blur(10px);
-  padding: 10px 0;
-  min-width: 200px;
+  padding: 5px 0;
+  min-width: 120px;
   display: none;
   z-index: 2000;
   box-shadow: 0 5px 15px rgba(0, 0, 0, 0.5);
@@ -98,8 +98,8 @@ body {
 }
 
 .profile-dropdown li {
-  padding: 10px 20px;
-  font-size: 1.5rem;
+  padding: 5px 10px;
+  font-size: 0.85rem;
   color: white;
   cursor: pointer;
   transition: background 0.3s ease;
@@ -113,7 +113,7 @@ body {
 }
 
 .nav-right p {
-  margin-right: 15px;
+  margin-right: 7px;
   font-weight: bold;
 }
 
@@ -121,9 +121,9 @@ body {
   display: flex;
   justify-content: center;
   align-items: center;
-  gap: 100px;
-  margin-top: 50px;
-  padding: 20px 80px 20px 150px;
+  gap: 50px;
+  margin-top: 25px;
+  padding: 10px 40px 10px 75px;
   height: 80vh;
   position: relative;
 }
@@ -138,9 +138,9 @@ body {
 }
 
 #game-title {
-  font-size: 15rem;
+  font-size: 7.5rem;
   font-weight: bold;
-  margin-bottom: 20px;
+  margin-bottom: 10px;
   color: white;
   font-family: "ChineseRock", sans-serif;
   text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.7);
@@ -148,10 +148,10 @@ body {
 }
 
 #game-subtitle {
-  font-size: 2.5rem;
+  font-size: 1.25rem;
   color: white;
-  margin-bottom: 30px;
-  max-width: 1500px;
+  margin-bottom: 15px;
+  max-width: 750px;
   text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.7);
   font-family: "Space Grotesk", sans-serif;
 }
@@ -160,14 +160,14 @@ body {
   background-color: #ffffff;
   color: black;
   border: none;
-  width: 360px;
-  height: 120px;
+  width: 180px;
+  height: 60px;
   padding: 0;
-  margin-right: 20px;
-  font-size: 2rem;
+  margin-right: 10px;
+  font-size: 1rem;
   font-weight: bold;
   font-family: "AmanoJaku", sans-serif;
-  border-radius: 20px;
+  border-radius: 10px;
   cursor: pointer;
   transition: background-color 0.5s ease;
   text-align: center;
@@ -177,14 +177,14 @@ body {
   background-color: transparent;
   color: white;
   border: 2px solid #ffffff;
-  width: 360px;
-  height: 120px;
+  width: 180px;
+  height: 60px;
   padding: 0;
-  margin-right: 20px;
-  font-size: 2rem;
+  margin-right: 10px;
+  font-size: 1rem;
   font-weight: bold;
   font-family: "AmanoJaku", sans-serif;
-  border-radius: 20px;
+  border-radius: 10px;
   cursor: pointer;
   transition: background-color 0.5s ease;
   text-align: center;
@@ -206,10 +206,10 @@ body {
 }
 
 #game-score-container {
-  margin-top: 20px;
-  font-size: 2.5rem;
+  margin-top: 10px;
+  font-size: 1.25rem;
   color: white;
-  max-width: 600px;
+  max-width: 300px;
   text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.7);
   font-family: "AmanoJaku", sans-serif;
 }
@@ -218,13 +218,13 @@ body {
   position: absolute;
   top: 50%;
   transform: translateY(-50%);
-  width: 60px;
-  height: 60px;
+  width: 30px;
+  height: 30px;
   border-radius: 50%;
   background-color: transparent;
   border: 2px solid white;
   color: white;
-  font-size: 2rem;
+  font-size: 1rem;
   cursor: pointer;
   z-index: 100;
   display: flex;
@@ -234,11 +234,11 @@ body {
 }
 
 .nav-left-btn {
-  left: 30px;
+  left: 15px;
 }
 
 .nav-right-btn {
-  right: 30px;
+  right: 15px;
 }
 
 .nav-btn:hover {
