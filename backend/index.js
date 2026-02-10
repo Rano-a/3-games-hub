@@ -18,10 +18,6 @@ app.get("/", (req, res) => {
   res.sendFile(path.join(__dirname, "..", "frontend", "index.html"));
 });
 
-app.get("/about", (req, res) => {
-  res.send("About page");
-});
-
 app.listen(port, () => {
   console.log(`Server started on port ${port}`);
 });

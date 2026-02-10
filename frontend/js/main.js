@@ -35,6 +35,23 @@ function updateDisplay() {
 
   domElements.btnPlay.href = currentGame.linkPlay;
   domElements.btnGh.href = currentGame.linkGh;
+
+  if (currentGame.linkPlay !== "#") {
+    domElements.btnPlay.target = "_blank";
+  } else {
+    domElements.btnPlay.removeAttribute("target");
+  }
+
+  // LocalStorage pour le moment
+  let scoreKey = null;
+  if (currentGame.theme === "theme-neon") {
+    scoreKey = "neonpop_score";
+  }
+
+  if (scoreKey) {
+    currentGame.score = parseInt(localStorage.getItem(scoreKey)) || 0;
+  }
+
   domElements.scoreSpan.textContent = currentGame.score;
 }
 

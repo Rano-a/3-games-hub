@@ -148,7 +148,7 @@
   text-align: center;
 }
 
-/* Specific button styles per theme */
+/* Styles de boutons spécifiques par thème */
 body.theme-neon .auth-submit-btn {
   background: #e0ffff;
   box-shadow: 0 0 15px #0ff;
@@ -167,7 +167,7 @@ body.theme-sticky .auth-submit-btn:hover {
   background-color: #ffd700;
 }
 
-/* Profile Modal */
+/* Modal de Profil */
 .profile-modal-overlay {
   position: fixed;
   top: 0;

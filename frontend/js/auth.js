@@ -1,5 +1,5 @@
 document.addEventListener("DOMContentLoaded", () => {
-  // Elements
+  // Éléments
   const authOverlay = document.getElementById("auth-overlay");
   const authBtn = document.getElementById("auth-btn");
   const authCloseBtn = document.getElementById("auth-close");
@@ -15,7 +15,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
   const userDisplayName = document.getElementById("user-display-name");
 
-  // State
+  // État
   const SESSION_KEY = "game_hub_session";
 
   // Validations
@@ -31,10 +31,10 @@ document.addEventListener("DOMContentLoaded", () => {
     return null;
   }
 
-  // Modal Logic
+  // Modal
   function openModal() {
     authOverlay.classList.add("active");
-    // Reset forms when opening
+    // Réinitialiser les formulaires à l'ouverture
     loginFormContainer.style.display = "block";
     registerFormContainer.style.display = "none";
     clearErrors();
@@ -44,7 +44,7 @@ document.addEventListener("DOMContentLoaded", () => {
     authOverlay.classList.remove("active");
   }
 
-  // Dropdown Logic
+  // Menu Déroulant
   const profileDropdown = document.getElementById("profile-dropdown");
   const menuLogout = document.getElementById("menu-logout");
   const menuProfile = document.getElementById("menu-profile");
@@ -63,7 +63,6 @@ document.addEventListener("DOMContentLoaded", () => {
     }
   }
 
-  // Close dropdown when clicking outside
   document.addEventListener("click", (e) => {
     if (!e.target.closest(".user-block")) {
       profileDropdown.classList.remove("active");
@@ -75,7 +74,7 @@ document.addEventListener("DOMContentLoaded", () => {
     profileDropdown.classList.remove("active");
   });
 
-  // Profile Modal Logic
+  // Profil
   const profileOverlay = document.getElementById("profile-overlay");
   const profileCloseBtn = document.getElementById("profile-close");
   const profileUsernameEl = document.getElementById("profile-username");
@@ -88,12 +87,12 @@ document.addEventListener("DOMContentLoaded", () => {
       profileUsernameEl.textContent = "Default User";
     }
 
-    // Populate scores from games array
+    // Remplir les scores à partir du tableau games
     document.getElementById("score-empereur").textContent = games[0].score || 0;
     document.getElementById("score-neon").textContent = games[1].score || 0;
     document.getElementById("score-sticky").textContent = games[2].score || 0;
 
-    // Calculate global score
+    // Calculer le score global
     const globalScore = games.reduce((sum, game) => sum + (game.score || 0), 0);
     document.getElementById("score-global").textContent = globalScore;
 
@@ -131,7 +130,7 @@ document.addEventListener("DOMContentLoaded", () => {
     }
   });
 
-  // Toggle Forms
+  // Basculer entre les formulaires
   showRegisterLink.addEventListener("click", () => {
     loginFormContainer.style.display = "none";
     registerFormContainer.style.display = "block";
@@ -151,7 +150,7 @@ document.addEventListener("DOMContentLoaded", () => {
     document.getElementById("form-register").reset();
   }
 
-  // Auth Logic (API)
+  // Authentification (API)
 
   async function registerUser(username, password) {
     try {
@@ -215,9 +214,9 @@ document.addEventListener("DOMContentLoaded", () => {
     }
   }
 
-  // Form Submissions
+  // Formulaires
 
-  // LOGIN
+  // CONNEXION
   formLogin.addEventListener("submit", async (e) => {
     e.preventDefault();
     const username = document.getElementById("login-username").value.trim();
@@ -233,7 +232,7 @@ document.addEventListener("DOMContentLoaded", () => {
     }
   });
 
-  // REGISTER
+  // INSCRIPTION
   formRegister.addEventListener("submit", async (e) => {
     e.preventDefault();
     const username = document.getElementById("register-username").value.trim();
@@ -269,7 +268,7 @@ document.addEventListener("DOMContentLoaded", () => {
     }
   });
 
-  // Init
+  // Initialisation
   const savedUser = getSession();
   if (savedUser) {
     updateUI(savedUser);

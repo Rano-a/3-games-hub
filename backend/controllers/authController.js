@@ -1,14 +1,14 @@
 const User = require("../models/User");
 const bcrypt = require("bcryptjs");
 
-// @desc    Register new user
+// @desc    Enregistrer un nouvel utilisateur
 // @route   POST /api/auth/signup
 // @access  Public
 exports.signup = async (req, res) => {
   try {
     const { username, password } = req.body;
 
-    // Basic Validation
+    // Validation de base
     if (!username || !password) {
       return res.status(400).json({ msg: "Veuillez remplir tous les champs." });
     }
@@ -18,17 +18,17 @@ exports.signup = async (req, res) => {
         .json({ msg: "Le mot de passe doit faire au moins 4 caractères." });
     }
 
-    // Check if user exists
+    // Vérifier si l'utilisateur existe
     let user = await User.findOne({ username });
     if (user) {
       return res.status(400).json({ msg: "Ce pseudo est déjà pris." });
     }
 
-    // Hash password
+    // Hacher le mot de passe
     const salt = await bcrypt.genSalt(10);
     const hashedPassword = await bcrypt.hash(password, salt);
 
-    // Create new user
+    // Créer un nouvel utilisateur
     user = new User({
       username,
       password: hashedPassword,
@@ -50,20 +50,20 @@ exports.signup = async (req, res) => {
   }
 };
 
-// @desc    Authenticate user
+// @desc    Authentifier l'utilisateur
 // @route   POST /api/auth/login
 // @access  Public
 exports.login = async (req, res) => {
   try {
     const { username, password } = req.body;
 
-    // Check for user
+    // Vérifier l'utilisateur
     const user = await User.findOne({ username });
     if (!user) {
       return res.status(400).json({ msg: "Pseudo incorrect." });
     }
 
-    // Check password (bcrypt comparison)
+    // Vérifier le mot de passe (comparaison bcrypt)
     const isMatch = await bcrypt.compare(password, user.password);
     if (!isMatch) {
       return res.status(400).json({ msg: "Mot de passe incorrect." });

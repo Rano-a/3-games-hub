@@ -13,7 +13,7 @@ const UserSchema = new mongoose.Schema({
   avatar: {
     type: String,
     default: "default-avatar.png",
-    // cloudinary
+    // API Cloudinary pour l'avatar
   },
   gameScores: {
     type: Map,

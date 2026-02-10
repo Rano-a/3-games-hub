@@ -1,6 +1,6 @@
 const games = [
   {
-    /* SAMURAI THEME */
+    /* THEME SAMURAI */
     name: "Le défi de l'Empereur",
     title: "BRAVEZ <br />LA GRANDE MURAILLE",
     subtitle:
@@ -14,13 +14,13 @@ const games = [
     logo: "assets/img/defi-de-lempereur-logo.png",
   },
   {
-    /* NEON THEME */
+    /* THEME NEON */
     name: "Neon pop",
     title: "UN CLIC <br />UNE RÉACTION </br />UN CHAOS TOTAL",
     subtitle:
       "Déclenchez l'étincelle parfaite dans un monde de néons. Une seule chance pour créer la réaction en chaîne la plus massive et pulvériser vos scores.",
     img: "assets/img/neon-pop-hero.png",
-    linkPlay: "#",
+    linkPlay: "games/neon-pop/index.html",
     linkGh: "https://github.com/Rano-a/3-games-hub",
     score: 0,
     theme: "theme-neon",
@@ -28,7 +28,7 @@ const games = [
     logo: "assets/img/neon-pop-logo.png",
   },
   {
-    /* STICKY THEME */
+    /* THEME STICKY */
     name: "Sticky climber",
     title: "DEFIEZ <br />LA GRAVITE",
     subtitle:
