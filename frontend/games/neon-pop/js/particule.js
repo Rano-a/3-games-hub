@@ -30,6 +30,9 @@ export default class Particule extends ObjetGraphique {
 
     ctx.save();
 
+    // Positionnement relatif
+    ctx.translate(this.x, this.y);
+
     // Transparence
     let alpha = 1 - this.age / this.dureeVie;
     ctx.globalAlpha = alpha;
@@ -40,7 +43,7 @@ export default class Particule extends ObjetGraphique {
 
     ctx.fillStyle = this.couleur;
     ctx.beginPath();
-    ctx.arc(this.x, this.y, this.rayon * alpha, 0, 2 * Math.PI);
+    ctx.arc(0, 0, this.rayon * alpha, 0, 2 * Math.PI);
     ctx.fill();
 
     ctx.restore();

@@ -33,6 +33,7 @@ export default class Game {
     this.combo = 0;
     this.billesDetruites = 0;
     this.aClique = false;
+    this.vies = 3;
 
     // Entités
     this.billes = [];
@@ -73,7 +74,11 @@ export default class Game {
     } else if (this.etat === "JEU EN COURS" && !this.aClique) {
       this.creerExplosionJoueur(x, y);
       this.aClique = true;
-    } else if (this.etat === "NIVEAU TERMINE" || this.etat === "GAME OVER") {
+    } else if (
+      this.etat === "NIVEAU TERMINE" ||
+      this.etat === "GAME OVER" ||
+      this.etat === "VIE PERDUE"
+    ) {
       if (this.etat === "NIVEAU TERMINE") {
         this.niveau++;
         if (this.niveau > NIVEAUX.length) {
@@ -81,13 +86,19 @@ export default class Game {
         } else {
           this.demarrerNiveau();
         }
+      } else if (this.etat === "VIE PERDUE") {
+        this.demarrerNiveau();
       } else {
         this.niveau = 1;
         this.score = 0;
+        this.vies = 3;
         this.demarrerNiveau();
       }
     } else if (this.etat === "VICTOIRE") {
       this.etat = "MENU";
+      this.vies = 3;
+      this.score = 0;
+      this.niveau = 1;
     }
   }
 
@@ -168,11 +179,12 @@ export default class Game {
       this.drawNiveauTermine();
     } else if (this.etat === "GAME OVER") {
       this.drawGameOver();
+    } else if (this.etat === "VIE PERDUE") {
+      this.drawViePerdue();
     } else if (this.etat === "VICTOIRE") {
       this.drawVictoire();
     }
 
-    // Prochaine image (frame)
     requestAnimationFrame(this.loop);
   }
 
@@ -232,7 +244,12 @@ export default class Game {
       // Sauvegarder le score dans le localStorage
       this.sauvegarderScore();
     } else {
-      this.etat = "GAME OVER";
+      this.vies--;
+      if (this.vies > 0) {
+        this.etat = "VIE PERDUE";
+      } else {
+        this.etat = "GAME OVER";
+      }
     }
   }
 
@@ -242,8 +259,6 @@ export default class Game {
       localStorage.setItem("neonpop_score", this.score);
     }
   }
-
-  // --- MERGED DRAW METHODS ---
 
   drawMenu() {
     this.ctx.save();
@@ -345,13 +360,18 @@ export default class Game {
     // Niveau
     this.ctx.fillText("Niveau : " + this.niveau, 20, 70);
 
+    // Vies
+    this.ctx.shadowColor = "#ff0000";
+    this.ctx.fillStyle = "#ff0000";
+    this.ctx.fillText("Vies : " + this.vies, 20, 100);
+
     // Objectif
     this.ctx.shadowColor = "#ff00ff";
     this.ctx.fillStyle = "#ff00ff";
     this.ctx.fillText(
       "Objectif : " + this.billesDetruites + " / " + config.quota,
       20,
-      100,
+      130,
     );
 
     // Combo
@@ -504,6 +524,46 @@ export default class Game {
     this.ctx.fillStyle = "#ffffff";
     this.ctx.fillText(
       "Cliquez pour revenir au menu",
+      this.canvas.width / 2,
+      this.canvas.height / 2 + 100,
+    );
+
+    this.ctx.restore();
+  }
+
+  drawViePerdue() {
+    this.drawJeu();
+
+    this.ctx.save();
+
+    this.ctx.fillStyle = "rgba(0, 0, 0, 0.7)";
+    this.ctx.fillRect(0, 0, this.canvas.width, this.canvas.height);
+
+    this.ctx.shadowBlur = 30;
+    this.ctx.shadowColor = "#ff0000";
+    this.ctx.fillStyle = "#ff0000";
+    this.ctx.font = "bold 60px Arial";
+    this.ctx.textAlign = "center";
+    this.ctx.fillText(
+      "VIE PERDUE",
+      this.canvas.width / 2,
+      this.canvas.height / 2 - 30,
+    );
+
+    this.ctx.shadowBlur = 15;
+    this.ctx.shadowColor = "#ff6666";
+    this.ctx.fillStyle = "#ff6666";
+    this.ctx.font = "30px Arial";
+    this.ctx.fillText(
+      "Il vous reste " + this.vies + " vies",
+      this.canvas.width / 2,
+      this.canvas.height / 2 + 30,
+    );
+
+    this.ctx.font = "24px Arial";
+    this.ctx.fillStyle = "#ffffff";
+    this.ctx.fillText(
+      "Cliquez pour réessayer",
       this.canvas.width / 2,
       this.canvas.height / 2 + 100,
     );

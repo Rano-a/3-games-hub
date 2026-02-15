@@ -23,13 +23,16 @@ export default class Bille extends ObjetGraphique {
 
     ctx.save();
 
+    // Positionnement relatif
+    ctx.translate(this.x, this.y);
+
     // Effet glow néon
     ctx.shadowBlur = 15;
     ctx.shadowColor = this.couleur;
 
     ctx.fillStyle = this.couleur;
     ctx.beginPath();
-    ctx.arc(this.x, this.y, this.rayon, 0, 2 * Math.PI);
+    ctx.arc(0, 0, this.rayon, 0, 2 * Math.PI);
     ctx.fill();
 
     // Petit reflet blanc au centre
@@ -37,8 +40,8 @@ export default class Bille extends ObjetGraphique {
     ctx.fillStyle = "rgba(255, 255, 255, 0.5)";
     ctx.beginPath();
     ctx.arc(
-      this.x - this.rayon * 0.3,
-      this.y - this.rayon * 0.3,
+      -this.rayon * 0.3,
+      -this.rayon * 0.3,
       this.rayon * 0.2,
       0,
       2 * Math.PI,
