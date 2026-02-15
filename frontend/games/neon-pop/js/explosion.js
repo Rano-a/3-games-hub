@@ -13,7 +13,7 @@ export default class Explosion extends ObjetGraphique {
 
     // Phases : CROISSANCE -> STABLE -> DISPARITION
     this.phase = "CROISSANCE";
-    this.tempsStable = 60; // temps de l'état stable
+    this.tempsStable = 60;
     this.compteurStable = 0;
 
     this.terminee = false;
