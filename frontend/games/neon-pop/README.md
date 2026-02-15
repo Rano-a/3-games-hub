@@ -37,3 +37,14 @@ Ce projet a été réalisé avec l'aide d'un assistant IA (Gemini/Antigravity) p
 - _"Ajoute un thème neon futuriste au jeu dans le thème Neon Pop (couleurs flashy, background sombre et effets de lueur)"_
 - _"Documente les classes JS du jeu Neon Pop"_
 - _"pourquoi les utilisateurs qui sont créés se crées dans une DB "nommée test" puis collection users et pas dans la collection "users" située dans la DB nommée "3GUDB". Corrige le problème tout en m'expliquant pourquoi"_
+
+## Difficultés rencontrées
+
+J'ai rencontré des difficultés lors de la création du jeu notamment sur :
+
+- La détection des collisions liées aux billes ET à l'explosion car j'avoue avoir eu du mal à bien comprendre le fonctionnement des collisions. J'ai donc bien relu le code que nous avons fait en classe et parfois demandé à l'IA de m'expliquer certains passages. 
+- Le choix de certains design car je n'ai pas trop d'imagination pour les couleurs et les effets visuels, l'aspect graphique de manière générale (c'est pour cela que j'ai demandé à l'IA).
+
+## Ce dont je suis fier
+
+Cependant, je suis tout de même fier d'avoir réalisé mon premier jeu web avec du canvas. Je suis aussi fier d'avoir pu déployer le jeu sur Vercel et de pouvoir le montrer à mes pairs.
