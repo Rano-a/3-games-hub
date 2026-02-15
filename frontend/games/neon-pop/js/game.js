@@ -2,6 +2,7 @@ import Bille from "./bille.js";
 import Explosion from "./explosion.js";
 import { creerParticules } from "./particule.js";
 import { circleCollide } from "./collisionUtils.js";
+import { initListeners } from "./ecouteurs.js";
 
 const NIVEAUX = [
   { nbBilles: 60, quota: 10 }, // Niveau 1
@@ -49,8 +50,9 @@ export default class Game {
   init() {
     console.log("Initialisation de Neon Pop (Game Class)");
     this.resizeCanvas();
-    window.addEventListener("resize", this.resizeCanvas);
-    this.canvas.addEventListener("click", this.handleClick);
+
+    // Initialisation des écouteurs
+    initListeners(this);
 
     // Démarrage de la boucle
     requestAnimationFrame(this.loop);
