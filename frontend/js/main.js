@@ -47,6 +47,9 @@ function updateDisplay() {
   if (currentGame.theme === "theme-neon") {
     scoreKey = "neonpop_score";
   }
+  if (currentGame.theme === "theme-samurai") {
+    scoreKey = "emperor_score";
+  }
 
   if (scoreKey) {
     currentGame.score = parseInt(localStorage.getItem(scoreKey)) || 0;

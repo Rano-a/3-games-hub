@@ -6,7 +6,7 @@ const games = [
     subtitle:
       "Gauche, milieu, droite : choisissez votre voie sur la plus grande merveille du monde. Évitez les obstacles, testez vos réflexes et établissez un score digne de l'Empereur.",
     img: "assets/img/defi-de-lempereur-hero.png",
-    linkPlay: "#",
+    linkPlay: "games/defi-de-lempereur/index.html",
     linkGh: "https://github.com/Rano-a/3-games-hub",
     score: 0,
     theme: "theme-samurai",
