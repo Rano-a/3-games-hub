@@ -64,6 +64,7 @@ export default class Joueur {
 
   draw(ctx, offsetY) {
     let sy = this.y - offsetY;
+    let r  = this.rayon;
 
     ctx.save();
 
@@ -71,8 +72,8 @@ export default class Joueur {
     if (this.attache && this.ancre) {
       let ancreScreenY = this.ancre.y - offsetY;
       ctx.setLineDash([6, 5]);
-      ctx.strokeStyle = "rgba(255, 215, 0, 0.6)";
-      ctx.lineWidth = 2;
+      ctx.strokeStyle = "rgba(40, 150, 80, 0.75)";
+      ctx.lineWidth = 2.5;
       ctx.beginPath();
       ctx.moveTo(this.x, sy);
       ctx.lineTo(this.ancre.x, ancreScreenY);
@@ -82,36 +83,51 @@ export default class Joueur {
 
     ctx.translate(this.x, sy);
 
-    // Halo de glow
-    ctx.shadowBlur = 28;
-    ctx.shadowColor = "#ffd700";
+    // Ombre portée
+    ctx.shadowBlur = 18;
+    ctx.shadowColor = "rgba(20, 120, 50, 0.45)";
 
-    let grad = ctx.createRadialGradient(-4, -4, 1, 0, 0, this.rayon);
-    grad.addColorStop(0, "#ffffff");
-    grad.addColorStop(0.35, "#ffd700");
-    grad.addColorStop(1, "#b8860b");
+    // Corps slime — blob aplati avec bezier
+    let grad = ctx.createRadialGradient(-r * 0.3, -r * 0.4, 0, r * 0.1, r * 0.1, r * 1.5);
+    grad.addColorStop(0,   "rgba(175, 255, 190, 0.97)");
+    grad.addColorStop(0.4, "rgba(55,  200,  90, 0.93)");
+    grad.addColorStop(1,   "rgba(15,  110,  45, 0.88)");
     ctx.fillStyle = grad;
     ctx.beginPath();
-    ctx.arc(0, 0, this.rayon, 0, Math.PI * 2);
+    ctx.moveTo(0, -r * 0.9);
+    ctx.bezierCurveTo( r * 0.55, -r * 1.1,  r * 1.4,  -r * 0.45,  r * 1.35,  r * 0.25);
+    ctx.bezierCurveTo( r * 1.3,   r * 0.88,  r * 0.65,  r,          0,          r);
+    ctx.bezierCurveTo(-r * 0.65,  r,         -r * 1.3,   r * 0.88, -r * 1.35,  r * 0.25);
+    ctx.bezierCurveTo(-r * 1.4,  -r * 0.45, -r * 0.55, -r * 1.1,   0,         -r * 0.9);
+    ctx.closePath();
     ctx.fill();
 
-    // Anneau
+    // Contour subtil
     ctx.shadowBlur = 0;
-    ctx.strokeStyle = "rgba(255,255,255,0.4)";
-    ctx.lineWidth = 1.5;
+    ctx.strokeStyle = "rgba(10, 80, 30, 0.35)";
+    ctx.lineWidth = 1;
     ctx.stroke();
 
     // Yeux
-    ctx.fillStyle = "#1a0a00";
+    ctx.fillStyle = "#162810";
     ctx.beginPath();
-    ctx.arc(-4, -3, 2.5, 0, Math.PI * 2);
-    ctx.arc(4, -3, 2.5, 0, Math.PI * 2);
+    ctx.ellipse(-r * 0.38, -r * 0.12, r * 0.24, r * 0.30, 0, 0, Math.PI * 2);
+    ctx.fill();
+    ctx.beginPath();
+    ctx.ellipse( r * 0.38, -r * 0.12, r * 0.24, r * 0.30, 0, 0, Math.PI * 2);
     ctx.fill();
 
-    // Reflet
-    ctx.fillStyle = "rgba(255,255,255,0.5)";
+    // Reflets dans les yeux
+    ctx.fillStyle = "rgba(255, 255, 255, 0.88)";
     ctx.beginPath();
-    ctx.arc(-this.rayon * 0.3, -this.rayon * 0.3, this.rayon * 0.25, 0, Math.PI * 2);
+    ctx.arc(-r * 0.30, -r * 0.24, r * 0.09, 0, Math.PI * 2);
+    ctx.arc( r * 0.46, -r * 0.24, r * 0.09, 0, Math.PI * 2);
+    ctx.fill();
+
+    // Reflet brillant sur le dessus
+    ctx.fillStyle = "rgba(255, 255, 255, 0.48)";
+    ctx.beginPath();
+    ctx.ellipse(-r * 0.18, -r * 0.55, r * 0.40, r * 0.17, -0.35, 0, Math.PI * 2);
     ctx.fill();
 
     ctx.restore();

@@ -44,39 +44,43 @@ export default class Ancre {
       }
     }
 
-    let couleur = this.type === "mobile" ? "#ff8800" : this.type === "ephemere" ? "#00e5ff" : "#ffd700";
+    let couleur = this.type === "mobile" ? "#ff8800" : this.type === "ephemere" ? "#00c8f0" : "#e8c000";
 
-    ctx.shadowBlur = 22;
-    ctx.shadowColor = couleur;
-
-    // Halo externe
-    ctx.fillStyle = couleur.replace(")", ", 0.15)").replace("rgb", "rgba");
+    // Halo coloré
     let gradient = ctx.createRadialGradient(0, 0, this.rayon * 0.5, 0, 0, this.rayon * 1.8);
-    gradient.addColorStop(0, couleur + "44");
+    gradient.addColorStop(0, couleur + "50");
     gradient.addColorStop(1, "transparent");
     ctx.fillStyle = gradient;
     ctx.beginPath();
     ctx.arc(0, 0, this.rayon * 1.8, 0, Math.PI * 2);
     ctx.fill();
 
+    // Ombre portée pour la profondeur
+    ctx.shadowOffsetX = 2;
+    ctx.shadowOffsetY = 3;
+    ctx.shadowBlur = 5;
+    ctx.shadowColor = "rgba(0, 0, 0, 0.35)";
+
     // Corps principal
     let grad = ctx.createRadialGradient(-this.rayon * 0.3, -this.rayon * 0.3, 0, 0, 0, this.rayon);
     grad.addColorStop(0, "#ffffff");
     grad.addColorStop(0.3, couleur);
-    grad.addColorStop(1, this.type === "mobile" ? "#cc5500" : this.type === "ephemere" ? "#0088aa" : "#b8860b");
+    grad.addColorStop(1, this.type === "mobile" ? "#cc5500" : this.type === "ephemere" ? "#007799" : "#a07800");
     ctx.fillStyle = grad;
     ctx.beginPath();
     ctx.arc(0, 0, this.rayon, 0, Math.PI * 2);
     ctx.fill();
 
-    // Anneau externe
-    ctx.strokeStyle = "rgba(255,255,255,0.5)";
-    ctx.lineWidth = 1.5;
+    // Contour sombre (lisibilité sur fond clair)
+    ctx.shadowOffsetX = 0;
+    ctx.shadowOffsetY = 0;
+    ctx.shadowBlur = 0;
+    ctx.strokeStyle = "rgba(0, 0, 0, 0.45)";
+    ctx.lineWidth = 1.8;
     ctx.stroke();
 
     // Croix centrale
-    ctx.shadowBlur = 0;
-    ctx.strokeStyle = "rgba(0,0,0,0.4)";
+    ctx.strokeStyle = "rgba(0,0,0,0.35)";
     ctx.lineWidth = 1.5;
     ctx.beginPath();
     ctx.moveTo(-this.rayon * 0.45, 0);

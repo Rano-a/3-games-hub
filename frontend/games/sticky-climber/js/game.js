@@ -173,75 +173,107 @@ export default class Game {
 
   drawFond() {
     let ctx = this.ctx;
+    let W = this.canvas.width;
+    let H = this.canvas.height;
 
-    let grad = ctx.createLinearGradient(0, 0, 0, this.canvas.height);
-    grad.addColorStop(0, "#04000f");
-    grad.addColorStop(1, "#16083a");
+    let grad = ctx.createLinearGradient(0, 0, 0, H);
+    grad.addColorStop(0, "#5aaee0");
+    grad.addColorStop(0.55, "#b8ddf5");
+    grad.addColorStop(1, "#e8f4fb");
     ctx.fillStyle = grad;
-    ctx.fillRect(0, 0, this.canvas.width, this.canvas.height);
+    ctx.fillRect(0, 0, W, H);
 
-    // Étoiles en parallaxe (déterministes par index)
-    let decalage = Math.floor(-this.offsetY * 0.12) % this.canvas.height;
-    ctx.fillStyle = "rgba(255,255,255,0.6)";
-    for (let i = 0; i < 90; i++) {
-      let x = ((i * 139 + 41) % 100) / 100 * this.canvas.width;
-      let y = ((i * 257 + 89 + decalage) % this.canvas.height + this.canvas.height) % this.canvas.height;
-      let r = i % 5 === 0 ? 1.8 : i % 3 === 0 ? 1.2 : 0.7;
-      ctx.beginPath();
-      ctx.arc(x, y, r, 0, Math.PI * 2);
-      ctx.fill();
-    }
-
-    // Silhouettes de rochers en arrière-plan
-    this.drawRochers();
+    this.drawMontagne();
+    this.drawNuages();
   }
 
-  drawRochers() {
+  drawMontagne() {
     let ctx = this.ctx;
-    let decalage = (-this.offsetY * 0.3) % (this.canvas.height * 1.5);
+    let W = this.canvas.width;
+    let H = this.canvas.height;
+    let decalage = -this.offsetY * 0.02;
 
-    ctx.fillStyle = "rgba(20, 10, 50, 0.7)";
-
-    // Rocher gauche
     ctx.save();
     ctx.translate(0, decalage);
+
+    let sx = W * 0.5;
+    let sy = -H * 0.8;
+    let baseY = H * 1.0;
+
+    // Face gauche dans l'ombre
+    ctx.fillStyle = "#6e8fa8";
     ctx.beginPath();
-    ctx.moveTo(0, this.canvas.height * 0.2);
-    ctx.lineTo(this.canvas.width * 0.18, this.canvas.height * 0.05);
-    ctx.lineTo(this.canvas.width * 0.22, this.canvas.height * 0.35);
-    ctx.lineTo(this.canvas.width * 0.08, this.canvas.height * 0.5);
-    ctx.lineTo(0, this.canvas.height * 0.45);
+    ctx.moveTo(-W * 0.1, baseY);
+    ctx.lineTo(sx, sy);
+    ctx.lineTo(sx, baseY);
     ctx.closePath();
     ctx.fill();
 
+    // Face droite éclairée
+    ctx.fillStyle = "#9abccc";
     ctx.beginPath();
-    ctx.moveTo(0, this.canvas.height * 0.7);
-    ctx.lineTo(this.canvas.width * 0.14, this.canvas.height * 0.6);
-    ctx.lineTo(this.canvas.width * 0.2, this.canvas.height * 0.85);
-    ctx.lineTo(0, this.canvas.height * 0.9);
+    ctx.moveTo(sx, sy);
+    ctx.lineTo(W * 1.1, baseY);
+    ctx.lineTo(sx, baseY);
     ctx.closePath();
     ctx.fill();
+
+    // Calotte neigeuse
+    let neigeY = sy + (baseY - sy) * 0.28;
+    ctx.fillStyle = "#eef5ff";
+    ctx.beginPath();
+    ctx.moveTo(sx, sy);
+    ctx.lineTo(sx + W * 0.2,  neigeY + H * 0.015);
+    ctx.lineTo(sx + W * 0.06, neigeY + H * 0.045);
+    ctx.lineTo(sx,            neigeY + H * 0.030);
+    ctx.lineTo(sx - W * 0.06, neigeY + H * 0.045);
+    ctx.lineTo(sx - W * 0.16, neigeY);
+    ctx.closePath();
+    ctx.fill();
+
+    // Ombre sur la neige côté gauche
+    ctx.fillStyle = "rgba(130, 170, 205, 0.42)";
+    ctx.beginPath();
+    ctx.moveTo(sx, sy);
+    ctx.lineTo(sx,            neigeY + H * 0.030);
+    ctx.lineTo(sx - W * 0.06, neigeY + H * 0.045);
+    ctx.lineTo(sx - W * 0.16, neigeY);
+    ctx.closePath();
+    ctx.fill();
+
     ctx.restore();
+  }
 
-    // Rocher droit
+  drawNuages() {
+    let ctx = this.ctx;
+    let W = this.canvas.width;
+    let H = this.canvas.height;
+    let decalage = (-this.offsetY * 0.1) % (H * 3);
+
+    const nuages = [
+      { x: 0.14, y: 0.10, r: 0.09 },
+      { x: 0.72, y: 0.22, r: 0.07 },
+      { x: 0.42, y: 0.38, r: 0.08 },
+      { x: 0.86, y: 0.07, r: 0.055 },
+      { x: 0.28, y: 0.65, r: 0.075 },
+      { x: 0.60, y: 0.80, r: 0.06 },
+    ];
+
     ctx.save();
-    ctx.translate(0, decalage - this.canvas.height * 0.75);
-    ctx.beginPath();
-    ctx.moveTo(this.canvas.width, this.canvas.height * 0.15);
-    ctx.lineTo(this.canvas.width * 0.82, this.canvas.height * 0.08);
-    ctx.lineTo(this.canvas.width * 0.78, this.canvas.height * 0.3);
-    ctx.lineTo(this.canvas.width * 0.9, this.canvas.height * 0.48);
-    ctx.lineTo(this.canvas.width, this.canvas.height * 0.4);
-    ctx.closePath();
-    ctx.fill();
+    ctx.translate(0, decalage);
+    ctx.fillStyle = "rgba(255, 255, 255, 0.78)";
 
-    ctx.beginPath();
-    ctx.moveTo(this.canvas.width, this.canvas.height * 0.65);
-    ctx.lineTo(this.canvas.width * 0.84, this.canvas.height * 0.58);
-    ctx.lineTo(this.canvas.width * 0.79, this.canvas.height * 0.82);
-    ctx.lineTo(this.canvas.width, this.canvas.height * 0.88);
-    ctx.closePath();
-    ctx.fill();
+    nuages.forEach((n) => {
+      let cx = n.x * W;
+      let cy = n.y * H;
+      let r  = n.r * W;
+      ctx.beginPath();
+      ctx.arc(cx,            cy,            r,        0, Math.PI * 2);
+      ctx.arc(cx + r * 0.9,  cy - r * 0.3,  r * 0.70, 0, Math.PI * 2);
+      ctx.arc(cx - r * 0.75, cy - r * 0.22, r * 0.65, 0, Math.PI * 2);
+      ctx.fill();
+    });
+
     ctx.restore();
   }
 
@@ -256,21 +288,26 @@ export default class Game {
     let ctx = this.ctx;
     ctx.save();
 
-    ctx.shadowBlur = 14;
-    ctx.shadowColor = "#ffd700";
-    ctx.fillStyle = "#ffd700";
+    ctx.fillStyle = "rgba(255, 255, 255, 0.50)";
+    ctx.beginPath();
+    if (ctx.roundRect) ctx.roundRect(12, 12, 195, 68, 10);
+    else ctx.rect(12, 12, 195, 68);
+    ctx.fill();
+
+    ctx.shadowBlur = 0;
+    ctx.fillStyle = "#1a4a28";
     ctx.font = "bold 22px Arial";
     ctx.textAlign = "left";
     ctx.fillText("Hauteur : " + this.score + " m", 22, 42);
 
-    ctx.shadowColor = "#aaaaaa";
-    ctx.fillStyle = "rgba(200,200,200,0.8)";
+    ctx.fillStyle = "#333";
     ctx.font = "18px Arial";
     ctx.fillText("Record : " + this.meilleurScore + " m", 22, 70);
 
     if (!this.joueur.attache) {
-      ctx.shadowColor = "#ffffff";
-      ctx.fillStyle = "rgba(255,255,255,0.75)";
+      ctx.shadowBlur = 4;
+      ctx.shadowColor = "rgba(0,0,0,0.55)";
+      ctx.fillStyle = "rgba(255,255,255,0.88)";
       ctx.font = "20px Arial";
       ctx.textAlign = "center";
       ctx.fillText("Clic ou Espace pour s'accrocher !", this.canvas.width / 2, this.canvas.height - 28);
@@ -283,33 +320,42 @@ export default class Game {
     this.drawFond();
 
     let ctx = this.ctx;
+    let W = this.canvas.width;
+    let H = this.canvas.height;
     ctx.save();
 
-    ctx.shadowBlur = 40;
-    ctx.shadowColor = "#ffd700";
-    ctx.fillStyle = "#ffd700";
-    ctx.font = "bold 70px Arial";
+    let pw = Math.min(500, W - 40);
+    let ph = 260;
+    let px = (W - pw) / 2;
+    let py = H / 2 - ph / 2 - 20;
+
+    ctx.fillStyle = "rgba(255, 255, 255, 0.58)";
+    if (ctx.roundRect) ctx.roundRect(px, py, pw, ph, 18);
+    else ctx.rect(px, py, pw, ph);
+    ctx.fill();
+
+    ctx.shadowBlur = 3;
+    ctx.shadowColor = "rgba(0,0,0,0.2)";
+    ctx.fillStyle = "#0e3020";
+    ctx.font = "bold 62px Arial";
     ctx.textAlign = "center";
-    ctx.fillText("STICKY CLIMBER", this.canvas.width / 2, this.canvas.height / 2 - 70);
+    ctx.fillText("STICKY CLIMBER", W / 2, py + 80);
 
     ctx.shadowBlur = 0;
-    ctx.fillStyle = "rgba(255,215,0,0.4)";
-    ctx.fillRect(this.canvas.width / 2 - 180, this.canvas.height / 2 - 50, 360, 2);
+    ctx.fillStyle = "rgba(30,30,30,0.4)";
+    ctx.fillRect(W / 2 - 180, py + 96, 360, 2);
 
-    ctx.shadowBlur = 15;
-    ctx.shadowColor = "#ffffff";
-    ctx.fillStyle = "#ffffff";
-    ctx.font = "26px Arial";
-    ctx.fillText("Cliquez pour jouer", this.canvas.width / 2, this.canvas.height / 2 + 10);
+    ctx.fillStyle = "#111";
+    ctx.font = "25px Arial";
+    ctx.fillText("Clic ou Espace pour jouer", W / 2, py + 142);
 
-    ctx.fillStyle = "rgba(180,180,180,0.7)";
-    ctx.font = "18px Arial";
-    ctx.fillText("Clic ou Espace pour lancer, à nouveau pour s'accrocher", this.canvas.width / 2, this.canvas.height / 2 + 50);
+    ctx.fillStyle = "rgba(50,50,50,0.7)";
+    ctx.font = "16px Arial";
+    ctx.fillText("Lancer · en vol : s'accrocher", W / 2, py + 178);
 
-    ctx.shadowColor = "#ffd700";
-    ctx.fillStyle = "#ffd700";
-    ctx.font = "22px Arial";
-    ctx.fillText("Record : " + this.meilleurScore + " m", this.canvas.width / 2, this.canvas.height / 2 + 100);
+    ctx.fillStyle = "#1a5e30";
+    ctx.font = "bold 20px Arial";
+    ctx.fillText("Record : " + this.meilleurScore + " m", W / 2, py + 218);
 
     ctx.restore();
   }
