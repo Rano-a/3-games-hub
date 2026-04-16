@@ -1,0 +1,257 @@
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  background: linear-gradient(150deg, #0d0c18 0%, #150e28 50%, #0d180d 100%);
+  min-height: 100vh;
+  font-family: "Space Grotesk", sans-serif;
+  color: white;
+}
+
+/* ── Navbar ── */
+.navbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 14px 40px;
+  background: rgba(0, 0, 0, 0.35);
+  backdrop-filter: blur(12px);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.07);
+  position: sticky;
+  top: 0;
+  z-index: 100;
+}
+
+.nav-home-link {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  text-decoration: none;
+  color: white;
+  font-family: "Amanojaku", sans-serif;
+  font-size: 1.1rem;
+}
+
+.nav-center {
+  display: flex;
+  gap: 35px;
+}
+
+.nav-center a {
+  text-decoration: none;
+  color: rgba(255, 255, 255, 0.60);
+  font-family: "Amanojaku", sans-serif;
+  font-size: 1.1rem;
+  transition: color 0.2s;
+}
+
+.nav-center a.active,
+.nav-center a:hover {
+  color: white;
+}
+
+.nav-right {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-family: "Amanojaku", sans-serif;
+  font-size: 1rem;
+  color: white;
+  position: relative;
+  text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.7);
+}
+
+.user-block {
+  position: relative;
+}
+
+.profile-dropdown {
+  position: absolute;
+  top: calc(100% + 8px);
+  right: 0;
+  background: rgba(0, 0, 0, 0.92);
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  border-radius: 6px;
+  backdrop-filter: blur(10px);
+  padding: 5px 0;
+  min-width: 130px;
+  display: none;
+  z-index: 2000;
+  box-shadow: 0 5px 20px rgba(0, 0, 0, 0.5);
+}
+
+.profile-dropdown.active {
+  display: block;
+}
+
+.profile-dropdown ul {
+  list-style: none;
+}
+
+.profile-dropdown li {
+  padding: 8px 14px;
+  font-size: 0.85rem;
+  color: white;
+  cursor: pointer;
+  font-family: "Space Grotesk", sans-serif;
+  transition: background 0.2s;
+}
+
+.profile-dropdown li:hover {
+  background: rgba(255, 255, 255, 0.1);
+}
+
+/* ── Main ── */
+main {
+  padding: 60px 40px 100px;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.page-title {
+  font-family: "ChineseRock", sans-serif;
+  font-size: 3.5rem;
+  text-align: center;
+  margin-bottom: 56px;
+  letter-spacing: 3px;
+  color: white;
+  text-shadow: 2px 2px 8px rgba(0, 0, 0, 0.5);
+}
+
+/* ── Grid ── */
+.games-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 28px;
+}
+
+/* ── Cards ── */
+.game-card {
+  background: rgba(255, 255, 255, 0.05);
+  border-radius: 16px;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.game-card:hover {
+  transform: translateY(-8px);
+}
+
+.game-card.samurai { border-top: 4px solid #f35050; }
+.game-card.samurai:hover { box-shadow: 0 24px 48px rgba(243, 80, 80, 0.22); }
+
+.game-card.neon { border-top: 4px solid #00ffff; }
+.game-card.neon:hover { box-shadow: 0 24px 48px rgba(0, 255, 255, 0.22); }
+
+.game-card.sticky { border-top: 4px solid #ffd700; }
+.game-card.sticky:hover { box-shadow: 0 24px 48px rgba(255, 215, 0, 0.22); }
+
+/* ── Image ── */
+.card-img-wrap {
+  height: 220px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+}
+
+.game-card.samurai .card-img-wrap { background: rgba(40, 8, 8, 0.92); }
+.game-card.neon    .card-img-wrap { background: rgba(0, 5, 30, 0.95); }
+.game-card.sticky  .card-img-wrap { background: rgba(4, 0, 15, 0.95); }
+
+.card-img-wrap img {
+  max-height: 200px;
+  max-width: 90%;
+  object-fit: contain;
+  transition: transform 0.4s ease;
+}
+
+.game-card:hover .card-img-wrap img {
+  transform: scale(1.06);
+}
+
+/* ── Corps de la carte ── */
+.card-body {
+  padding: 24px;
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+  flex: 1;
+}
+
+.card-name {
+  font-family: "Amanojaku", sans-serif;
+  font-size: 1.3rem;
+  color: white;
+}
+
+.card-desc {
+  font-size: 0.92rem;
+  color: rgba(255, 255, 255, 0.66);
+  line-height: 1.65;
+  flex: 1;
+}
+
+/* ── Bouton Jouer ── */
+.btn-jouer {
+  display: block;
+  text-align: center;
+  text-decoration: none;
+  padding: 13px 0;
+  border-radius: 9px;
+  font-family: "Amanojaku", sans-serif;
+  font-size: 1rem;
+  font-weight: bold;
+  letter-spacing: 1px;
+  transition: all 0.3s ease;
+  margin-top: 6px;
+}
+
+.samurai .btn-jouer { background: white; color: black; }
+.samurai .btn-jouer:hover { background: #f35050; color: white; }
+
+.neon .btn-jouer { background: #00ffff; color: black; }
+.neon .btn-jouer:hover { background: white; box-shadow: 0 0 18px #00ffff; }
+
+.sticky .btn-jouer { background: #ffd700; color: black; }
+.sticky .btn-jouer:hover { background: white; }
+
+/* ── Footer ── */
+footer {
+  text-align: center;
+  color: rgba(255, 255, 255, 0.35);
+  font-size: 0.8rem;
+  padding: 20px;
+  font-family: "Space Grotesk", sans-serif;
+}
+
+/* ── Responsive ── */
+@media (max-width: 900px) {
+  .games-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 580px) {
+  .games-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .page-title {
+    font-size: 2.5rem;
+  }
+
+  main {
+    padding: 40px 20px 80px;
+  }
+
+  .navbar {
+    padding: 12px 20px;
+  }
+}
