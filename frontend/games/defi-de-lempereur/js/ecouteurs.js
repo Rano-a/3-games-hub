@@ -1,5 +1,12 @@
 export function initListeners(game) {
   window.addEventListener("keydown", (e) => {
+    if (e.key === " ") {
+      e.preventDefault();
+      if (game.etat === "MENU" || game.etat === "GAME OVER") {
+        game.demarrer();
+      }
+      return;
+    }
     if (game.etat !== "JEU EN COURS") return;
     if (e.key === "ArrowLeft" || e.key === "a" || e.key === "A") {
       game.joueur.allerGauche();
