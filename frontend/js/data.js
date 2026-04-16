@@ -34,7 +34,7 @@ const games = [
     subtitle:
       "Accrochez-vous, visez haut et ne lâchez rien. Maîtrisez l'art de la rotation pour grimper toujours plus loin dans ce défi vertical infini.",
     img: "assets/img/sticky-climber-hero.png",
-    linkPlay: "#",
+    linkPlay: "games/sticky-climber/index.html",
     linkGh: "https://github.com/Rano-a/3-games-hub",
     score: 0,
     theme: "theme-sticky",

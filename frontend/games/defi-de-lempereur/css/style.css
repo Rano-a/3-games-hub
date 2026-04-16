@@ -462,6 +462,12 @@ body {
   color: rgba(240, 192, 64, 0.55);
 }
 
+.hint-espace {
+  font-size: 0.75rem;
+  color: rgba(255, 255, 255, 0.35);
+  margin-top: -8px;
+}
+
 .btn-jeu {
   background: transparent;
   color: #f0c040;
