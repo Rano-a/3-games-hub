@@ -87,14 +87,21 @@ document.addEventListener("DOMContentLoaded", () => {
       profileUsernameEl.textContent = "Default User";
     }
 
-    // Remplir les scores à partir du tableau games
-    document.getElementById("score-empereur").textContent = games[0].score || 0;
-    document.getElementById("score-neon").textContent = games[1].score || 0;
-    document.getElementById("score-sticky").textContent = games[2].score || 0;
-
-    // Calculer le score global
-    const globalScore = games.reduce((sum, game) => sum + (game.score || 0), 0);
-    document.getElementById("score-global").textContent = globalScore;
+    // Lire les scores depuis le tableau games (hub) ou localStorage (autres pages)
+    let s0, s1, s2;
+    if (typeof games !== "undefined") {
+      s0 = games[0].score || 0;
+      s1 = games[1].score || 0;
+      s2 = games[2].score || 0;
+    } else {
+      s0 = parseInt(localStorage.getItem("emperor_score"))      || 0;
+      s1 = parseInt(localStorage.getItem("neonpop_score"))      || 0;
+      s2 = parseInt(localStorage.getItem("stickyclimber_score")) || 0;
+    }
+    document.getElementById("score-empereur").textContent = s0;
+    document.getElementById("score-neon").textContent     = s1;
+    document.getElementById("score-sticky").textContent   = s2;
+    document.getElementById("score-global").textContent   = s0 + s1 + s2;
 
     profileOverlay.classList.add("active");
     profileDropdown.classList.remove("active");

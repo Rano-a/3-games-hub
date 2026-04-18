@@ -169,6 +169,15 @@ export default class Game {
   sauvegarderScore() {
     this.meilleurScore = Math.max(this.score, this.meilleurScore);
     localStorage.setItem("stickyclimber_score", this.meilleurScore);
+
+    const username = localStorage.getItem("game_hub_session");
+    if (username) {
+      fetch("/api/leaderboard/score", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ username, game: "sticky", score: this.meilleurScore }),
+      }).catch(() => {});
+    }
   }
 
   drawFond() {

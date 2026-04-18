@@ -139,7 +139,16 @@ export default class Game {
   sauvegarderScore() {
     let meilleur = parseInt(localStorage.getItem("emperor_score")) || 0;
     if (this.score > meilleur) {
-      localStorage.setItem("emperor_score", this.score);
+      meilleur = this.score;
+      localStorage.setItem("emperor_score", meilleur);
+    }
+    const username = localStorage.getItem("game_hub_session");
+    if (username && meilleur > 0) {
+      fetch("/api/leaderboard/score", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ username, game: "emperor", score: meilleur }),
+      }).catch((e) => console.error("Erreur sync score emperor :", e));
     }
   }
 

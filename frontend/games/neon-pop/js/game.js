@@ -254,9 +254,18 @@ export default class Game {
   }
 
   sauvegarderScore() {
-    let meilleurScore = localStorage.getItem("neonpop_score") || 0;
-    if (this.score > meilleurScore) {
-      localStorage.setItem("neonpop_score", this.score);
+    let meilleur = parseInt(localStorage.getItem("neonpop_score")) || 0;
+    if (this.score > meilleur) {
+      meilleur = this.score;
+      localStorage.setItem("neonpop_score", meilleur);
+    }
+    const username = localStorage.getItem("game_hub_session");
+    if (username && meilleur > 0) {
+      fetch("/api/leaderboard/score", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ username, game: "neon", score: meilleur }),
+      }).catch((e) => console.error("Erreur sync score neon :", e));
     }
   }
 

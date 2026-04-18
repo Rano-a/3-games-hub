@@ -11,7 +11,6 @@ body {
   color: white;
 }
 
-/* ── Navbar ── */
 .navbar {
   display: flex;
   justify-content: space-between;
@@ -31,7 +30,7 @@ body {
   gap: 12px;
   text-decoration: none;
   color: white;
-  font-family: "Amanojaku", sans-serif;
+  font-family: "Space Grotesk", sans-serif;
   font-size: 1.1rem;
 }
 
@@ -43,7 +42,7 @@ body {
 .nav-center a {
   text-decoration: none;
   color: rgba(255, 255, 255, 0.60);
-  font-family: "Amanojaku", sans-serif;
+  font-family: "Space Grotesk", sans-serif;
   font-size: 1.1rem;
   transition: color 0.2s;
 }
@@ -57,7 +56,7 @@ body {
   display: flex;
   align-items: center;
   gap: 10px;
-  font-family: "Amanojaku", sans-serif;
+  font-family: "Space Grotesk", sans-serif;
   font-size: 1rem;
   color: white;
   position: relative;
@@ -104,31 +103,18 @@ body {
   background: rgba(255, 255, 255, 0.1);
 }
 
-/* ── Main ── */
 main {
   padding: 60px 40px 100px;
   max-width: 1200px;
   margin: 0 auto;
 }
 
-.page-title {
-  font-family: "ChineseRock", sans-serif;
-  font-size: 3.5rem;
-  text-align: center;
-  margin-bottom: 56px;
-  letter-spacing: 3px;
-  color: white;
-  text-shadow: 2px 2px 8px rgba(0, 0, 0, 0.5);
-}
-
-/* ── Grid ── */
 .games-grid {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
   gap: 28px;
 }
 
-/* ── Cards ── */
 .game-card {
   background: rgba(255, 255, 255, 0.05);
   border-radius: 16px;
@@ -152,7 +138,6 @@ main {
 .game-card.sticky { border-top: 4px solid #ffd700; }
 .game-card.sticky:hover { box-shadow: 0 24px 48px rgba(255, 215, 0, 0.22); }
 
-/* ── Image ── */
 .card-img-wrap {
   height: 220px;
   display: flex;
@@ -176,7 +161,6 @@ main {
   transform: scale(1.06);
 }
 
-/* ── Corps de la carte ── */
 .card-body {
   padding: 24px;
   display: flex;
@@ -186,7 +170,7 @@ main {
 }
 
 .card-name {
-  font-family: "Amanojaku", sans-serif;
+  font-family: "Space Grotesk", sans-serif;
   font-size: 1.3rem;
   color: white;
 }
@@ -198,14 +182,13 @@ main {
   flex: 1;
 }
 
-/* ── Bouton Jouer ── */
 .btn-jouer {
   display: block;
   text-align: center;
   text-decoration: none;
   padding: 13px 0;
   border-radius: 9px;
-  font-family: "Amanojaku", sans-serif;
+  font-family: "Space Grotesk", sans-serif;
   font-size: 1rem;
   font-weight: bold;
   letter-spacing: 1px;
@@ -222,7 +205,6 @@ main {
 .sticky .btn-jouer { background: #ffd700; color: black; }
 .sticky .btn-jouer:hover { background: white; }
 
-/* ── Footer ── */
 footer {
   text-align: center;
   color: rgba(255, 255, 255, 0.35);
@@ -231,7 +213,6 @@ footer {
   font-family: "Space Grotesk", sans-serif;
 }
 
-/* ── Responsive ── */
 @media (max-width: 900px) {
   .games-grid {
     grid-template-columns: repeat(2, 1fr);

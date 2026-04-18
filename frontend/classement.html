@@ -3,10 +3,10 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Les Jeux - 3 Games Hub</title>
+    <title>Classement — 3 Games Hub</title>
     <link rel="stylesheet" href="./css/fonts.css" />
     <link rel="stylesheet" href="./css/auth.css" />
-    <link rel="stylesheet" href="./css/jeux.css" />
+    <link rel="stylesheet" href="./css/classement.css" />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
@@ -25,8 +25,8 @@
         </div>
 
         <div class="nav-center">
-          <a href="jeux.html" class="active">Jeux</a>
-          <a href="classement.html">Classement</a>
+          <a href="jeux.html">Jeux</a>
+          <a href="classement.html" class="active">Classement</a>
         </div>
 
         <div class="nav-right">
@@ -47,41 +47,26 @@
     </header>
 
     <main>
-      <div class="games-grid">
+      <div class="tabs">
+        <button class="tab-btn active" data-tab="global">🏆 Global</button>
+        <button class="tab-btn" data-tab="emperor">⚔️ Le défi de l'Empereur</button>
+        <button class="tab-btn" data-tab="neon">💥 Neon Pop</button>
+        <button class="tab-btn" data-tab="sticky">🧗 Sticky Climber</button>
+      </div>
 
-        <article class="game-card samurai">
-          <div class="card-img-wrap">
-            <img src="assets/img/defi-de-lempereur-hero.png" alt="Le défi de l'Empereur" />
-          </div>
-          <div class="card-body">
-            <h2 class="card-name">Le défi de l'Empereur</h2>
-            <p class="card-desc">Gauche, milieu, droite : choisissez votre voie sur la plus grande merveille du monde. Évitez les obstacles, testez vos réflexes et établissez un score digne de l'Empereur.</p>
-            <a href="games/defi-de-lempereur/index.html" target="_blank" class="btn-jouer">Jouer</a>
-          </div>
-        </article>
-
-        <article class="game-card neon">
-          <div class="card-img-wrap">
-            <img src="assets/img/neon-pop-hero.png" alt="Neon Pop" />
-          </div>
-          <div class="card-body">
-            <h2 class="card-name">Neon Pop</h2>
-            <p class="card-desc">Déclenchez l'étincelle parfaite dans un monde de néons. Une seule chance pour créer la réaction en chaîne la plus massive et pulvériser vos scores.</p>
-            <a href="games/neon-pop/index.html" target="_blank" class="btn-jouer">Jouer</a>
-          </div>
-        </article>
-
-        <article class="game-card sticky">
-          <div class="card-img-wrap">
-            <img src="assets/img/sticky-climber-hero.png" alt="Sticky Climber" />
-          </div>
-          <div class="card-body">
-            <h2 class="card-name">Sticky Climber</h2>
-            <p class="card-desc">Accrochez-vous, visez haut et ne lâchez rien. Maîtrisez l'art de la rotation pour grimper toujours plus loin dans ce défi vertical infini.</p>
-            <a href="games/sticky-climber/index.html" target="_blank" class="btn-jouer">Jouer</a>
-          </div>
-        </article>
-
+      <div class="leaderboard-wrap">
+        <table>
+          <thead>
+            <tr>
+              <th>#</th>
+              <th>Joueur</th>
+              <th id="score-label">Score Global</th>
+            </tr>
+          </thead>
+          <tbody id="leaderboard-body">
+            <tr><td colspan="3" class="empty">Chargement…</td></tr>
+          </tbody>
+        </table>
       </div>
     </main>
 
@@ -179,15 +164,6 @@
     </footer>
 
     <script src="./js/auth.js"></script>
-    <script>
-      document.querySelectorAll(".btn-jouer").forEach((btn) => {
-        btn.addEventListener("click", (e) => {
-          if (!localStorage.getItem("game_hub_session")) {
-            e.preventDefault();
-            document.getElementById("auth-overlay").classList.add("active");
-          }
-        });
-      });
-    </script>
+    <script src="./js/classement.js"></script>
   </body>
 </html>
